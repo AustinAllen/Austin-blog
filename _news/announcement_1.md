@@ -1,8 +1,8 @@
 ---
 layout: post
-date: 2015-10-22 15:59:00-0400
+date: 2026-06-10 09:00:00-0000
 inline: true
 related_posts: false
 ---
 
-A simple inline announcement.
+Launched my personal site! :rocket: New posts on robotics, tinyML, and football analytics coming soon.
