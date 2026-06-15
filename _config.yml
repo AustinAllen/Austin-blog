@@ -327,7 +327,7 @@ jekyll-archives:
   books:
     enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
 
-display_tags: ["intro", "robotics", "tinyml", "football", "data"] # these tags will be displayed on the front page of your blog
+display_tags: ["intro", "ai", "robotics", "tinyml", "football", "data"] # these tags will be displayed on the front page of your blog
 display_categories: ["general"] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
