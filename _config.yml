@@ -126,6 +126,7 @@ blog_name: Austin Fu # blog_name will be displayed in your blog page
 blog_description: notes on robotics, tinyML, football analytics, and data
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
+future: true # build posts dated "today" even when the CI clock is still on the previous day in UTC
 
 # Pagination
 pagination:
