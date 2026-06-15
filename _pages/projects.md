@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: Things I'm building and exploring — robotics, tinyML, football analytics, and data.
+description: A selection of things I've built — AI systems, robotics, and real-time software.
 nav: true
 nav_order: 2
-display_categories: [engineering, data]
+display_categories: [ai, software]
 horizontal: false
 ---
 
