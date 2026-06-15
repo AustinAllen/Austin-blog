@@ -6,7 +6,7 @@ subtitle: Robotics · TinyML · Football analytics · Data — building things a
 
 profile:
   align: right
-  image: prof_pic.jpg
+  image: avatar.jpeg
   image_circular: true # crops the image to make it circular
   more_info: >
     <p>Reach me by email below 👇</p>
