@@ -1,9 +1,8 @@
 ---
 layout: page
-published: false # saved draft — set true (and category: ai|software) to publish
 title: When the City Rides — A Bike-Share EDA
 description: Exploring a year of bike-share trips to find the difference between commuters and casual riders, hidden in the shape of the day.
-img: assets/img/10.jpg
+img: assets/img/bike-share-eda.jpg
 importance: 2
 category: data
 chart:

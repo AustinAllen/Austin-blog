@@ -1,9 +1,8 @@
 ---
 layout: page
-published: false # saved draft — set true (and category: ai|software) to publish
 title: Self-Balancing Robot
 description: A two-wheel inverted-pendulum robot that stays upright using an IMU and a cascaded PID controller.
-img: assets/img/3.jpg
+img: assets/img/self-balancing-robot.jpg
 importance: 1
 category: engineering
 mermaid:

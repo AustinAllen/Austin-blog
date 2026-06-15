@@ -2,10 +2,10 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A selection of things I've built — AI systems, robotics, and real-time software.
+description: A selection of things I've built and explored — AI systems, software, robotics, and data.
 nav: true
 nav_order: 2
-display_categories: [ai, software]
+display_categories: [ai, software, engineering, data]
 horizontal: false
 ---
 

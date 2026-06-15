@@ -2,7 +2,7 @@
 layout: page
 title: Agentic AI & LLM Systems
 description: Master's work at the University of Auckland — prototyping LLM-powered assistants and agentic systems, including an Animal Ethics Advisor on IBM Cloud.
-img: assets/img/12.jpg
+img: assets/img/agentic-ai-systems.jpg
 importance: 2
 category: ai
 mermaid:

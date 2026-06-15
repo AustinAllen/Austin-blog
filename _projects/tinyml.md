@@ -1,9 +1,8 @@
 ---
 layout: page
-published: false # saved draft — set true (and category: ai|software) to publish
 title: Wake-Word Detection on a Microcontroller
 description: A keyword-spotting neural net that runs in ~20 KB of RAM on a battery-powered MCU — always listening, never phoning home.
-img: assets/img/7.jpg
+img: assets/img/wake-word-tinyml.jpg
 importance: 2
 category: engineering
 mermaid:
