@@ -9,12 +9,12 @@ last_name: Fu
 contact_note: >
   The best way to reach me is by email.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Personal site of Austin Fu — building and writing about robotics, tinyML, American football analytics, and data.
+  Personal site of Austin Fu — Business Analytics Consultant turning data into decisions, with a background in AI and robotics. Writing about analytics, data, tinyML, and football.
 footer_text: >
   &copy; Austin Fu. Built with <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> and the
   <a href="https://github.com/alshedivat/al-folio" target="_blank">al-folio</a> theme. Hosted on
   <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-keywords: Austin Fu, robotics, tinyML, football analytics, data analysis, personal website # add your own keywords or leave empty
+keywords: Austin Fu, business analytics, analytics consultant, data analytics, data analysis, AI, robotics, tinyML, football analytics, personal website # add your own keywords or leave empty
 lang: en # the language of your site (for example: en, fr, cn, ru, etc.)
 icon: 🤖 # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
@@ -123,7 +123,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 # -----------------------------------------------------------------------------
 
 blog_name: Austin Fu # blog_name will be displayed in your blog page
-blog_description: notes on robotics, tinyML, football analytics, and data
+blog_description: notes on business analytics, data, AI, and football analytics
 permalink: /blog/:year/:title/
 lsi: false # produce an index for related posts
 future: true # build posts dated "today" even when the CI clock is still on the previous day in UTC

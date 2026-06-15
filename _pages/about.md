@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: Robotics · TinyML · Football analytics · Data — building things and writing about them.
+subtitle: Business Analytics Consultant — turning data into decisions. Tinkering with robotics, tinyML, and football analytics on the side.
 
 profile:
   align: right
