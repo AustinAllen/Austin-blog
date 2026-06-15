@@ -1,0 +1,170 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Conversational AI for Pepper &amp; NAO Robots | Austin Fu </title> <meta name="author" content="Austin Fu"> <meta name="description" content="Leading AI features for SoftBank's Pepper and NAO humanoid robots — natural language and computer vision shipped across 3,000+ educational installations."> <meta name="keywords" content="Austin Fu, business analytics, analytics consultant, data analytics, data analysis, AI, robotics, tinyML, football analytics, personal website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/Austin-blog/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/Austin-blog/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A4%96&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/Austin-blog/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://austinallen.github.io/Austin-blog/projects/pepper-nao-ai/"> <script src="/Austin-blog/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/Austin-blog/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/Austin-blog/"> <span class="font-weight-bold">Austin</span> Fu </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/Austin-blog/">about </a> </li> <li class="nav-item "> <a class="nav-link" href="/Austin-blog/blog/">blog </a> </li> <li class="nav-item active"> <a class="nav-link" href="/Austin-blog/projects/">projects <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/Austin-blog/cv/">CV </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Conversational AI for Pepper &amp; NAO Robots</h1> <p class="post-description">Leading AI features for SoftBank's Pepper and NAO humanoid robots — natural language and computer vision shipped across 3,000+ educational installations.</p> </header> <article> <p>For seven years at <strong>SoftBank Robotics Group</strong>, I worked as a Project &amp; Product Manager across AI and robotics — sitting between the research, the engineering, and the partners who actually put these robots in front of students. The work spanned the <strong>Pepper</strong> and <strong>NAO</strong> humanoid platforms, and the goal was always the same: make a robot that a child or teacher could simply <em>talk to</em> and have it respond like it understood.</p> <blockquote> <p>This is a public-level overview of work done at SoftBank Robotics; it deliberately avoids internal or proprietary detail.</p> </blockquote> <h2 id="what-i-worked-on">What I worked on</h2> <p><strong>Conversational and perceptual AI.</strong> I helped deliver deployed AI prototypes in <strong>Python and C++</strong> that combined two streams:</p> <ul> <li> <strong>Natural language</strong> — speech recognition and dialogue systems so the robot could hold a conversation, answer questions, and run guided lessons.</li> <li> <strong>Computer vision</strong> — face and emotion detection so the robot could notice who it was talking to and adapt its responses.</li> </ul> <p>These features shipped across <strong>3,000+ educational installations</strong>, where reliability and graceful failure matter far more than benchmark scores — a robot that freezes in front of a classroom is worse than one that politely says “say that again.”</p> <p><strong>Platforms and tooling.</strong> I worked on platforms including <strong>RoboBlocks</strong>, the <strong>Robot Management Console</strong>, and <strong>Choregraphe</strong>, which let educators and partners compose robot behaviors as modular tasks and watch analytics dashboards rather than write low-level code.</p> <p><strong>Fleet health and telemetry.</strong> I engineered <strong>ETL pipelines and telemetry frameworks</strong> to collect and monitor robot health data, with <strong>Dockerized dashboards on Linux</strong> for remote device control — so a fleet of robots in the field could be observed and updated centrally.</p> <p><strong>Autonomous navigation R&amp;D.</strong> I prototyped navigation using <strong>ROS + SLAM</strong> (e.g. ORB-SLAM2) together with ML vision models for object detection, scene understanding, and mapping.</p> <h2 id="how-the-pieces-fit">How the pieces fit</h2> <p>At a high level, an interaction flowed through a perception → reasoning → action loop, with telemetry observing the whole fleet:</p> <div class="row justify-content-center"> <div class="col-md-9"> ```mermaid flowchart LR P["Perception<br>speech + vision<br>(face / emotion)"] --&gt; D["Dialogue &amp;<br>behavior logic"] D --&gt; A["Robot action<br>speech / motion /<br>lesson flow"] A -. health + usage .-&gt; T[("Telemetry / ETL<br>fleet dashboards")] P -. metrics .-&gt; T style P fill:#b31b1b,color:#fff style D fill:#b31b1b,color:#fff style A fill:#b31b1b,color:#fff ``` </div> </div> <h2 id="beyond-the-tech-the-global-part">Beyond the tech: the global part</h2> <p>A lot of this role was <em>not</em> code. I collaborated with <strong>global teams across Japan, France, and China</strong>, synchronizing algorithm roadmaps, SDK releases, and training programs to support ecosystem growth toward <strong>~17,000 units globally</strong>. I also delivered developer training on the <strong>Pepper/NAO SDKs, ROS frameworks, and remote deployment</strong> — enabling <strong>1,000+ global partners</strong> to prototype their own educational and healthcare solutions on top of the platform.</p> <h2 id="what-i-took-from-it">What I took from it</h2> <p>The lasting lesson is that <strong>deployed AI is a product problem, not just a model problem.</strong> The hard parts were reliability at the edge, tooling that non-engineers could use, and keeping a worldwide partner ecosystem moving in the same direction. That’s the lens I bring to analytics and AI work now.</p> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Austin Fu. © Austin Fu. Built with <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> and the <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="external nofollow noopener">al-folio</a> theme. Hosted on <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/Austin-blog/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/Austin-blog/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/Austin-blog/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/Austin-blog/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/Austin-blog/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/Austin-blog/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/Austin-blog/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/Austin-blog/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/Austin-blog/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/Austin-blog/assets/al_img_tools/js/zoom.js"></script> <script defer src="/Austin-blog/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/Austin-blog/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/Austin-blog/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/Austin-blog/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/Austin-blog/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "A selection of things I've built — AI systems, robotics, and real-time software.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/Austin-blog/projects/";
+          },
+        },{id: "nav-cv",
+          title: "CV",
+          description: "My CV.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/Austin-blog/cv/";
+          },
+        },{id: "post-article-notes-how-to-fix-your-entire-life-in-a-day",
+        
+          title: "Article Notes: How to Fix Your Entire Life in a Day",
+        
+        description: "My summary and takeaways from Dan Koe's essay on changing your life by changing your identity, not just your habits. Link to the original inside — go read it.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Austin-blog/blog/2026/notes-fix-your-life-dan-koe/";
+          
+        },
+      },{id: "post-keep-it-local-why-your-ai-assistant-shouldn-39-t-live-in-someone-else-39-s-cloud",
+        
+          title: "Keep It Local: Why Your AI Assistant Shouldn't Live in Someone Else's Cloud...",
+        
+        description: "Every message and file you hand a cloud AI service lives on hardware you don't control — and may outlive the conversation. Here's the case for running a local LLM behind your own agentic platform.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Austin-blog/blog/2026/keep-your-ai-local/";
+          
+        },
+      },{id: "post-snowflake-dbt-how-they-actually-work-together",
+        
+          title: "Snowflake + dbt: How They Actually Work Together",
+        
+        description: "Snowflake stores and computes; dbt transforms and tests. Here's how the two fit into one modern data stack — and why the split makes sense.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Austin-blog/blog/2026/snowflake-and-dbt/";
+          
+        },
+      },{id: "post-welcome-what-this-site-is",
+        
+          title: "Welcome — what this site is",
+        
+        description: "A short intro to this site and what I'll be writing about.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Austin-blog/blog/2026/welcome/";
+          
+        },
+      },{id: "books-the-godfather",
+          title: 'The Godfather',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/Austin-blog/books/the_godfather/";
+            },},{id: "news-launched-my-personal-site-rocket-new-posts-on-robotics-tinyml-and-football-analytics-coming-soon",
+          title: 'Launched my personal site! <img class="emoji" title=":rocket:" alt=":rocket:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f680.png" height="20" width="20"> New posts on robotics, tinyML, and football analytics...',
+          description: "",
+          section: "News",},{id: "projects-agentic-ai-amp-llm-systems",
+          title: 'Agentic AI &amp; LLM Systems',
+          description: "Master's work at the University of Auckland — prototyping LLM-powered assistants and agentic systems, including an Animal Ethics Advisor on IBM Cloud.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/agentic-ai-systems/";
+            },},{id: "projects-call-vox-real-time-communication-app",
+          title: 'Call Vox — Real-Time Communication App',
+          description: "A WebRTC-based real-time communication app for healthcare and remote learning, shipped to iOS with 10K+ monthly active users.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/call-vox/";
+            },},{id: "projects-vehicle-damage-assessment-mobile-app",
+          title: 'Vehicle Damage-Assessment Mobile App',
+          description: "An Android app for insurance damage assessment built on Baidu Maps APIs, with core algorithms refactored for a 25% memory reduction.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/insurance-damage-app/";
+            },},{id: "projects-conversational-ai-for-pepper-amp-nao-robots",
+          title: 'Conversational AI for Pepper &amp; NAO Robots',
+          description: "Leading AI features for SoftBank's Pepper and NAO humanoid robots — natural language and computer vision shipped across 3,000+ educational installations.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/pepper-nao-ai/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/Austin-blog/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/Austin-blog/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%66%7A%70%73%68%77%61%72@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/austinallen", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/Austin-blog/assets/al_search/js/shortcut-key.js"></script> </body> </html>
