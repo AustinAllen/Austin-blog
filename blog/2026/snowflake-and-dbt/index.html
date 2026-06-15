@@ -1,0 +1,198 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Snowflake + dbt: How They Actually Work Together | Austin Fu </title> <meta name="author" content="Austin Fu"> <meta name="description" content="Snowflake stores and computes; dbt transforms and tests. Here's how the two fit into one modern data stack — and why the split makes sense."> <meta name="keywords" content="Austin Fu, robotics, tinyML, football analytics, data analysis, personal website"> <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; font-src 'self' data: https:; media-src 'self' https:; frame-src 'self' https:; connect-src 'self' https:;"> <style>
+  :root {
+    --max-content-width: 930px;
+  }
+</style> <link rel="stylesheet" href="/Austin-blog/assets/css/tailwind.css?v=50c64c15cbb9fd1ce6056fdb8bcb4b62"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.2.0/css/all.min.css" integrity="sha256-MVopmdyC2tYTiJ8wlktf0uh0v4NgT+vNdyVFepi7Q0c=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.5/css/academicons.min.css" integrity="sha256-SzrCOBJbGVFMahewkgjwnApaV2+av1DwMAA+/QGLyZw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://cdn.jsdelivr.net/npm/scholar-icons@1.0.3/css/scholar-icons.css" integrity="sha256-VY3hHVj/hNX3fYG6wtbA6TcKJQl7+FthzGSyIB64klY=" crossorigin="anonymous"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/Austin-blog/assets/css/jekyll-pygments-themes-github.css?v=591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%A4%96&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/Austin-blog/assets/css/main.css?v=f0b101217084a90093badfe99ff9a7d1"> <link rel="canonical" href="https://austinallen.github.io/Austin-blog/blog/2026/snowflake-and-dbt/"> <script src="/Austin-blog/assets/js/theme.js?v=7af685e2ba20b37fef545c97b8064050"></script> <link defer rel="stylesheet" href="/Austin-blog/assets/css/jekyll-pygments-themes-native.css?v=5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/Austin-blog/"> <span class="font-weight-bold">Austin</span> Fu </a> <button class="navbar-toggler collapsed navbar-toggler-main" type="button" data-nav-toggle="navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse navbar-collapse-main" id="navbarNav"> <ul class="navbar-nav navbar-menu-list flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/Austin-blog/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/Austin-blog/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/Austin-blog/projects/">projects </a> </li> <li class="nav-item"> <button id="search-toggle" type="button" title="Search" aria-label="Open search"> <span class="nav-link">ctrl k <i class="fa-solid fa-magnifying-glass"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" type="button" title="Change theme" aria-label="Change color theme"> <i class="fa-half-sun-moon" id="light-toggle-system"></i> <i class="fa-solid fa-moon" id="light-toggle-dark"></i> <i class="fa-solid fa-sun" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Snowflake + dbt: How They Actually Work Together</h1> <p class="post-meta"> Created on June 15, 2026 </p> <p class="post-tags"> <a href="/Austin-blog/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/Austin-blog/blog/tag/data"> <i class="fa-solid fa-hashtag fa-sm"></i> data</a>   ·   <a href="/Austin-blog/blog/category/general"> <i class="fa-solid fa-tag fa-sm"></i> general</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>If you spend any time around modern data teams, you’ll hear “Snowflake and dbt” said in the same breath so often it sounds like one product. It isn’t — they’re two tools that do <strong>different halves of the same job</strong>, and they fit together so cleanly that the combination has become a default for analytics work. This post is my attempt to explain <em>why</em> they pair up, and what’s actually happening when they do.</p> <h2 id="the-one-sentence-version">The one-sentence version</h2> <blockquote> <p><strong>Snowflake is where your data lives and where computation happens. dbt is how you turn raw data into trustworthy, well-tested tables — using SQL that Snowflake runs.</strong></p> </blockquote> <p>That’s the whole relationship. Snowflake is the <strong>warehouse</strong> (storage + compute); dbt is the <strong>transformation layer</strong> (the “T” in ELT). dbt doesn’t store data and it doesn’t have its own compute engine — it <em>pushes work down</em> into Snowflake.</p> <h2 id="first-what-each-one-is">First, what each one is</h2> <h3 id="snowflake--the-cloud-data-warehouse">Snowflake — the cloud data warehouse</h3> <p>Snowflake is a fully-managed cloud data platform. The thing that made it famous is the <strong>separation of storage and compute</strong>:</p> <ul> <li> <strong>Storage</strong> sits in cheap cloud object storage (S3/GCS/Azure Blob under the hood), holding your tables in a compressed columnar format.</li> <li> <strong>Compute</strong> runs on “virtual warehouses” — clusters you spin up on demand. You can run a huge query on a big warehouse, then shut it off and stop paying for compute while your data just sits in storage.</li> </ul> <p>Because the two scale independently, ten analysts can each get their own compute without copying the data, and an overnight batch job can use a massive warehouse for 20 minutes and nothing the rest of the day.</p> <h3 id="dbt--the-transformation-framework">dbt — the transformation framework</h3> <p><strong>dbt</strong> (data build tool) brings software-engineering discipline to SQL. You write your transformations as plain <code class="language-plaintext highlighter-rouge">SELECT</code> statements; dbt handles the rest:</p> <ul> <li>It figures out the <strong>dependency order</strong> between models and builds them in sequence.</li> <li>It wraps each <code class="language-plaintext highlighter-rouge">SELECT</code> in the right <code class="language-plaintext highlighter-rouge">CREATE TABLE</code> / <code class="language-plaintext highlighter-rouge">CREATE VIEW</code> boilerplate.</li> <li>It runs <strong>tests</strong> on your data (uniqueness, not-null, accepted values, relationships).</li> <li>It generates <strong>documentation</strong> and a visual <strong>lineage graph</strong>.</li> <li>It version-controls everything in <strong>git</strong>, so transformations get code review, CI, and rollbacks like any other codebase.</li> </ul> <p>The key mental model: <strong>dbt is a compiler and orchestrator, not an engine.</strong> It compiles your models into SQL and sends that SQL to Snowflake to execute.</p> <h2 id="how-they-fit-elt-not-etl">How they fit: ELT, not ETL</h2> <p>The old pattern was <strong>ETL</strong> — Extract, Transform, Load — where a separate tool transformed data <em>before</em> loading it into the warehouse. Snowflake + dbt flips that to <strong>ELT</strong>:</p> <ol> <li> <strong>Extract &amp; Load</strong> — a tool like Fivetran/Airbyte (or <code class="language-plaintext highlighter-rouge">COPY INTO</code>) dumps <strong>raw</strong> data into Snowflake, untouched.</li> <li> <strong>Transform</strong> — dbt runs <em>inside</em> Snowflake, turning that raw data into clean, modeled tables using Snowflake’s own compute.</li> </ol> <p>The big idea: <strong>don’t transform before loading — load everything raw, then transform in the warehouse</strong> where you have cheap, scalable compute and a full SQL engine. dbt is the tool that makes that transform step organized and reliable.</p> <div class="row justify-content-center"> <div class="col-md-9"> ```mermaid flowchart LR A["Sources<br>(app DB, APIs,<br>events, CSVs)"] --&gt;|"Extract + Load<br>(Fivetran / COPY)"| B[("Snowflake<br>raw tables")] B --&gt;|"dbt run<br>(compiles SQL,<br>Snowflake executes)"| C[("Snowflake<br>staging models")] C --&gt; D[("Snowflake<br>marts / final tables")] D --&gt; E["BI tools<br>(Tableau, Looker,<br>notebooks)"] style B fill:#b31b1b,color:#fff style C fill:#b31b1b,color:#fff style D fill:#b31b1b,color:#fff ``` </div> </div> <p>Notice that the raw, staging, and final tables <strong>all live in Snowflake</strong>. dbt never holds the data — it orchestrates transformations that happen <em>in place</em>.</p> <h2 id="what-it-looks-like-in-practice">What it looks like in practice</h2> <h3 id="1-connect-dbt-to-snowflake">1. Connect dbt to Snowflake</h3> <p>dbt’s Snowflake connection lives in <code class="language-plaintext highlighter-rouge">profiles.yml</code>. This is the only place dbt learns <em>which</em> warehouse, database, and role to use:</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># profiles.yml</span>
+<span class="na">my_project</span><span class="pi">:</span>
+  <span class="na">target</span><span class="pi">:</span> <span class="s">dev</span>
+  <span class="na">outputs</span><span class="pi">:</span>
+    <span class="na">dev</span><span class="pi">:</span>
+      <span class="na">type</span><span class="pi">:</span> <span class="s">snowflake</span>
+      <span class="na">account</span><span class="pi">:</span> <span class="s">ab12345.us-east-1</span>
+      <span class="na">user</span><span class="pi">:</span> <span class="s">AUSTIN</span>
+      <span class="na">authenticator</span><span class="pi">:</span> <span class="s">externalbrowser</span>   <span class="c1"># SSO; or password / key-pair</span>
+      <span class="na">role</span><span class="pi">:</span> <span class="s">TRANSFORMER</span>
+      <span class="na">warehouse</span><span class="pi">:</span> <span class="s">TRANSFORMING_WH</span>        <span class="c1"># the compute dbt will burn</span>
+      <span class="na">database</span><span class="pi">:</span> <span class="s">ANALYTICS</span>
+      <span class="na">schema</span><span class="pi">:</span> <span class="s">dbt_austin</span>                <span class="c1"># your dev sandbox</span>
+      <span class="na">threads</span><span class="pi">:</span> <span class="m">8</span>                        <span class="c1"># parallel models = parallel Snowflake queries</span>
+</code></pre></div></div> <p><code class="language-plaintext highlighter-rouge">threads: 8</code> is a nice illustration of the relationship — dbt will run up to 8 models at once, which simply means it fires up to 8 concurrent queries at your Snowflake warehouse. dbt manages the concurrency; Snowflake does the work.</p> <h3 id="2-write-a-model--its-just-a-select">2. Write a model — it’s just a SELECT</h3> <p>A dbt “model” is a <code class="language-plaintext highlighter-rouge">.sql</code> file containing one <code class="language-plaintext highlighter-rouge">SELECT</code>. Here’s a staging model that cleans up raw orders:</p> <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- models/staging/stg_orders.sql</span>
+<span class="k">with</span> <span class="k">source</span> <span class="k">as</span> <span class="p">(</span>
+    <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="p">{{</span> <span class="k">source</span><span class="p">(</span><span class="s1">'shop'</span><span class="p">,</span> <span class="s1">'raw_orders'</span><span class="p">)</span> <span class="p">}}</span>
+<span class="p">),</span>
+
+<span class="n">cleaned</span> <span class="k">as</span> <span class="p">(</span>
+    <span class="k">select</span>
+        <span class="n">order_id</span><span class="p">,</span>
+        <span class="n">customer_id</span><span class="p">,</span>
+        <span class="k">lower</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>                       <span class="k">as</span> <span class="n">status</span><span class="p">,</span>
+        <span class="k">cast</span><span class="p">(</span><span class="n">created_at</span> <span class="k">as</span> <span class="n">timestamp_ntz</span><span class="p">)</span>   <span class="k">as</span> <span class="n">ordered_at</span><span class="p">,</span>
+        <span class="n">amount_cents</span> <span class="o">/</span> <span class="mi">100</span><span class="p">.</span><span class="mi">0</span>                <span class="k">as</span> <span class="n">amount_usd</span>
+    <span class="k">from</span> <span class="k">source</span>
+    <span class="k">where</span> <span class="n">order_id</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span>
+<span class="p">)</span>
+
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cleaned</span>
+</code></pre></div></div> <p>That <code class="language-plaintext highlighter-rouge">{{ source(...) }}</code> is dbt’s <strong><code class="language-plaintext highlighter-rouge">ref</code>/<code class="language-plaintext highlighter-rouge">source</code> system</strong> — instead of hardcoding <code class="language-plaintext highlighter-rouge">ANALYTICS.RAW.RAW_ORDERS</code>, you reference it symbolically. dbt resolves it to the real Snowflake table name <em>and</em> records the dependency for the lineage graph.</p> <p>A downstream model just <code class="language-plaintext highlighter-rouge">ref</code>s the staging model:</p> <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- models/marts/customer_orders.sql</span>
+<span class="p">{{</span> <span class="n">config</span><span class="p">(</span><span class="n">materialized</span><span class="o">=</span><span class="s1">'table'</span><span class="p">)</span> <span class="p">}}</span>
+
+<span class="k">select</span>
+    <span class="n">customer_id</span><span class="p">,</span>
+    <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>            <span class="k">as</span> <span class="n">num_orders</span><span class="p">,</span>
+    <span class="k">sum</span><span class="p">(</span><span class="n">amount_usd</span><span class="p">)</span>     <span class="k">as</span> <span class="n">lifetime_value</span><span class="p">,</span>
+    <span class="k">min</span><span class="p">(</span><span class="n">ordered_at</span><span class="p">)</span>     <span class="k">as</span> <span class="n">first_order_at</span>
+<span class="k">from</span> <span class="p">{{</span> <span class="k">ref</span><span class="p">(</span><span class="s1">'stg_orders'</span><span class="p">)</span> <span class="p">}}</span>
+<span class="k">group</span> <span class="k">by</span> <span class="mi">1</span>
+</code></pre></div></div> <p>Because <code class="language-plaintext highlighter-rouge">customer_orders</code> references <code class="language-plaintext highlighter-rouge">stg_orders</code>, dbt knows to build staging <strong>first</strong>. You never write <code class="language-plaintext highlighter-rouge">CREATE TABLE</code> or manage build order by hand — that’s the orchestration dbt adds on top of Snowflake.</p> <h3 id="3-materialized--how-dbt-writes-to-snowflake">3. <code class="language-plaintext highlighter-rouge">materialized</code> = how dbt writes to Snowflake</h3> <p>That <code class="language-plaintext highlighter-rouge">config(materialized='table')</code> tells dbt <em>what kind of Snowflake object</em> to create. This is exactly where the two tools meet — the same <code class="language-plaintext highlighter-rouge">SELECT</code> becomes different Snowflake DDL depending on the materialization:</p> <table> <thead> <tr> <th>dbt materialization</th> <th>What dbt runs in Snowflake</th> </tr> </thead> <tbody> <tr> <td><code class="language-plaintext highlighter-rouge">view</code></td> <td> <code class="language-plaintext highlighter-rouge">CREATE VIEW … AS (your select)</code> — no storage, recomputed on read</td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">table</code></td> <td> <code class="language-plaintext highlighter-rouge">CREATE TABLE … AS (your select)</code> — full rebuild each run</td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">incremental</code></td> <td>First run builds the table; later runs <code class="language-plaintext highlighter-rouge">MERGE</code>/insert only <strong>new</strong> rows</td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">ephemeral</code></td> <td>No object at all — inlined as a CTE into downstream models</td> </tr> </tbody> </table> <p><code class="language-plaintext highlighter-rouge">incremental</code> is the one that shows off Snowflake’s strengths: on a billion-row events table, you don’t rebuild from scratch every night — dbt generates a <code class="language-plaintext highlighter-rouge">MERGE</code> that only processes what’s new, and Snowflake executes it efficiently.</p> <h3 id="4-test-your-data--in-snowflake">4. Test your data — in Snowflake</h3> <p>dbt tests are just SQL queries that should return <strong>zero rows</strong> (zero failures). You declare them in YAML and dbt compiles them into queries it runs against Snowflake:</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># models/staging/stg_orders.yml</span>
+<span class="na">models</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">stg_orders</span>
+    <span class="na">columns</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">order_id</span>
+        <span class="na">tests</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="s">unique</span>
+          <span class="pi">-</span> <span class="s">not_null</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">status</span>
+        <span class="na">tests</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">accepted_values</span><span class="pi">:</span>
+              <span class="na">values</span><span class="pi">:</span> <span class="pi">[</span><span class="s1">'</span><span class="s">pending'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">shipped'</span><span class="pi">,</span> <span class="s1">'</span><span class="s">cancelled'</span><span class="pi">]</span>
+</code></pre></div></div> <p>Run <code class="language-plaintext highlighter-rouge">dbt test</code> and dbt asks Snowflake “are there any duplicate <code class="language-plaintext highlighter-rouge">order_id</code>s? any nulls? any unexpected statuses?” If a query comes back with rows, the test fails and your pipeline stops before bad data reaches your dashboards. <strong>This is the part teams fall in love with</strong> — your data has a test suite, just like your application code.</p> <h3 id="5-run-it">5. Run it</h3> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dbt run        <span class="c"># build all models (Snowflake executes the compiled SQL)</span>
+dbt <span class="nb">test</span>       <span class="c"># run all data tests</span>
+dbt build      <span class="c"># run + test, in dependency order, in one command</span>
+dbt docs generate <span class="o">&amp;&amp;</span> dbt docs serve   <span class="c"># browse the lineage graph</span>
+</code></pre></div></div> <p>When you type <code class="language-plaintext highlighter-rouge">dbt run</code>, dbt compiles every model to Snowflake SQL, opens connections to your warehouse, and streams the <code class="language-plaintext highlighter-rouge">CREATE</code>/<code class="language-plaintext highlighter-rouge">MERGE</code> statements over. Watch your Snowflake query history during a run and you’ll see dbt’s fingerprints all over it.</p> <h2 id="why-the-split-is-so-effective">Why the split is so effective</h2> <ul> <li> <strong>Each tool does one thing well.</strong> Snowflake is a world-class SQL engine and storage layer; dbt is a world-class way to organize SQL. Neither tries to be the other.</li> <li> <strong>All your logic is version-controlled SQL.</strong> Transformations live in git — diffs, code review, CI, rollback. No more “what does this dashboard’s hidden SQL do?”</li> <li> <strong>Tests + docs + lineage come basically free.</strong> The hardest part of data work is <em>trust</em>; dbt bakes trust-building into the workflow.</li> <li> <strong>You only pay Snowflake for compute you use.</strong> dbt runs are bursty — spin up a warehouse, build everything, spin down. Storage stays cheap in between.</li> <li> <strong>It scales with the team, not against it.</strong> Symbolic <code class="language-plaintext highlighter-rouge">ref</code>s mean you can refactor a table’s physical name without breaking 40 downstream models.</li> </ul> <h2 id="the-mental-model-to-walk-away-with">The mental model to walk away with</h2> <p>Think of it like a <strong>kitchen</strong>: Snowflake is the <em>kitchen itself</em> — the storage, the stoves, the counter space. dbt is the <em>recipe book and the line cook’s discipline</em> — the ordered steps, the quality checks, the labeled containers. The food is cooked on Snowflake’s stoves, but dbt is what keeps the kitchen from descending into chaos.</p> <p>You don’t choose between them. Snowflake gives you somewhere powerful to do the work; dbt makes sure the work is organized, tested, and trustworthy. Together they’re the backbone of what most people now just call “the modern data stack.”</p> <hr> <p><em>Next post, I want to take a real dataset all the way through this stack — raw load, a few staging models, an incremental fact table, and tests — and show the Snowflake query history at each step.</em></p> </div> </article> <br> <hr> <br> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <ul class="list-disc pl-7 my-3 space-y-2 marker:text-[var(--global-theme-color)]"> <li class="leading-relaxed"> <a class="underline decoration-1 hover:text-[var(--global-hover-color)]" href="/Austin-blog/blog/2026/welcome/">Welcome — what this site is</a> </li> </ul> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Austin Fu. © Austin Fu. Built with <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> and the <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="external nofollow noopener">al-folio</a> theme. Hosted on <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+  window.alFolio = {
+    compatBootstrap: false
+  };
+</script> <script src="/Austin-blog/assets/js/nav-toggle.js?v=141bd79a73ebc0f0b6ea58e440ae79fc"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/Austin-blog/assets/js/masonry.js?v=e49affc7bd2646f6acdad1dbe02c2359" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js" integrity="sha256-1rA678n2xEx7x4cTZ5x4wpUCj6kUMZEZ5cxLSVSFWxw=" crossorigin="anonymous"></script> <script defer src="/Austin-blog/assets/al_charts/js/mermaid-setup.js" type="text/javascript"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/Austin-blog/assets/al_math/js/mathjax-setup.js"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script src="/Austin-blog/assets/js/tooltips-setup.js?v=fe487e99db6c43751e6e7bdb2d6a0611"></script> <script src="/Austin-blog/assets/js/no_defer.js?v=53b1b1a645525975c963ce8bf8bfefcf"></script> <script defer src="/Austin-blog/assets/js/common.js?v=87baac90f765f2f3362dcf6aaf312a8a"></script> <script defer src="/Austin-blog/assets/js/copy_code.js?v=c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/Austin-blog/assets/js/jupyter_new_tab.js?v=896d254890d9b47f0281f63bfccf0dee"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/Austin-blog/assets/al_img_tools/js/zoom.js"></script> <script defer src="/Austin-blog/assets/js/progress-bar.js?v=499464c5c63ced6cf7ad62509f1e2610" type="text/javascript"></script> <script src="https://cdn.jsdelivr.net/npm/vanilla-back-to-top@7.2.1/dist/vanilla-back-to-top.min.js" integrity="sha256-uMJJ3EoTyfRBoTbR+lrfu1uRQ87RZG8AR3cVNuQVeFg=" crossorigin="anonymous"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/Austin-blog/assets/al_search/js/search/ninja-keys.min.js"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/Austin-blog/assets/al_search/js/search-setup.js"></script> <script>
+// get the ninja-keys element
+const ninja = document.querySelector('ninja-keys');
+
+// add the home and posts menu items
+ninja.data = [{
+    id: "nav-about",
+    title: "about",
+    section: "Navigation",
+    handler: () => {
+      window.location.href = "/Austin-blog/";
+    },
+  },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/Austin-blog/blog/";
+          },
+        },{id: "nav-projects",
+          title: "projects",
+          description: "Things I'm building and exploring — robotics, tinyML, football analytics, and data.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/Austin-blog/projects/";
+          },
+        },{id: "post-snowflake-dbt-how-they-actually-work-together",
+        
+          title: "Snowflake + dbt: How They Actually Work Together",
+        
+        description: "Snowflake stores and computes; dbt transforms and tests. Here's how the two fit into one modern data stack — and why the split makes sense.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Austin-blog/blog/2026/snowflake-and-dbt/";
+          
+        },
+      },{id: "post-welcome-what-this-site-is",
+        
+          title: "Welcome — what this site is",
+        
+        description: "A short intro to this site and what I'll be writing about.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/Austin-blog/blog/2026/welcome/";
+          
+        },
+      },{id: "books-the-godfather",
+          title: 'The Godfather',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/Austin-blog/books/the_godfather/";
+            },},{id: "news-launched-my-personal-site-rocket-new-posts-on-robotics-tinyml-and-football-analytics-coming-soon",
+          title: 'Launched my personal site! <img class="emoji" title=":rocket:" alt=":rocket:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f680.png" height="20" width="20"> New posts on robotics, tinyML, and football analytics...',
+          description: "",
+          section: "News",},{id: "projects-when-the-city-rides-a-bike-share-eda",
+          title: 'When the City Rides — A Bike-Share EDA',
+          description: "Exploring a year of bike-share trips to find the difference between commuters and casual riders, hidden in the shape of the day.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/data-analysis/";
+            },},{id: "projects-should-you-go-for-it-4th-down-analytics",
+          title: 'Should You Go For It? — 4th-Down Analytics',
+          description: "Using play-by-play data to ask when NFL teams should go for it on fourth down — and how often they leave points on the field by punting.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/football-analytics/";
+            },},{id: "projects-self-balancing-robot",
+          title: 'Self-Balancing Robot',
+          description: "A two-wheel inverted-pendulum robot that stays upright using an IMU and a cascaded PID controller.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/robotics/";
+            },},{id: "projects-wake-word-detection-on-a-microcontroller",
+          title: 'Wake-Word Detection on a Microcontroller',
+          description: "A keyword-spotting neural net that runs in ~20 KB of RAM on a battery-powered MCU — always listening, never phoning home.",
+          section: "Projects",handler: () => {
+              window.location.href = "/Austin-blog/projects/tinyml/";
+            },},{id: "teachings-data-science-fundamentals",
+          title: 'Data Science Fundamentals',
+          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/Austin-blog/teachings/data-science-fundamentals/";
+            },},{id: "teachings-introduction-to-machine-learning",
+          title: 'Introduction to Machine Learning',
+          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
+          section: "Teachings",handler: () => {
+              window.location.href = "/Austin-blog/teachings/introduction-to-machine-learning/";
+            },},{
+        id: 'social-email',
+        title: 'email',
+        section: 'Socials',
+        handler: () => {
+          window.open("mailto:%66%7A%70%73%68%77%61%72@%67%6D%61%69%6C.%63%6F%6D", "_blank");
+        },
+      },{
+        id: 'social-github',
+        title: 'GitHub',
+        section: 'Socials',
+        handler: () => {
+          window.open("https://github.com/austinallen", "_blank");
+        },
+      },{
+      id: 'light-theme',
+      title: 'Change theme to light',
+      description: 'Change the theme of the site to Light',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("light");
+      },
+    },
+    {
+      id: 'dark-theme',
+      title: 'Change theme to dark',
+      description: 'Change the theme of the site to Dark',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("dark");
+      },
+    },
+    {
+      id: 'system-theme',
+      title: 'Use system default theme',
+      description: 'Change the theme of the site to System Default',
+      section: 'Theme',
+      handler: () => {
+        setThemeSetting("system");
+      },
+    },];
+
+</script> <script src="/Austin-blog/assets/al_search/js/shortcut-key.js"></script> </body> </html>
