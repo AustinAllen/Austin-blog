@@ -27,8 +27,10 @@ latest_posts:
 
 Hi, I'm **Austin Fu** — welcome to my corner of the internet.
 
-I'm an engineer and tinkerer drawn to systems that sense, move, and learn. Lately I've been spending time on **robotics**, **tinyML** (squeezing machine learning onto tiny, low-power hardware), **American football analytics**, and **data analysis** more broadly.
+I'm a **Business Analytics Consultant** who turns messy data into decisions people can actually act on. Over the past decade I've worked across robotics, software engineering, and product — including years at **SoftBank Robotics**, where I shipped AI-powered features for the Pepper and NAO robots and led cross-functional teams across Japan, France, and China. That work taught me the part I enjoy most: sitting between the data and the decision, and making the connection clear.
 
-This site is where I keep my [projects]({{ '/projects/' | relative_url }}) and write up what I'm learning on the [blog]({{ '/blog/' | relative_url }}) — build logs, experiments, and the occasional deep dive. If something here is useful or you'd like to chat, my links are below.
+These days I'm deepening that foundation with a **Master of Artificial Intelligence at the University of Auckland**, with a focus on ethical, human-centered AI in education and digital health. I like building things end to end — data pipelines, models, and the dashboards that turn them into something a stakeholder can use at a glance.
 
-> _This is the placeholder version of my bio — feel free to make it your own._
+When I'm not doing that, I'm tinkering: **tinyML** on low-power hardware, small **robotics** builds, and **American football analytics** (because every fourth-down decision is really just an expected-value problem).
+
+This site is where I keep my [projects]({{ '/projects/' | relative_url }}) and write up what I'm learning on the [blog]({{ '/blog/' | relative_url }}). If something here is useful or you'd like to chat, my links are below.
