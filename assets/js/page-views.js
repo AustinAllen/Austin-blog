@@ -47,10 +47,16 @@
     var countEl = btn.querySelector(".page-like-btn__count");
     var iconEl = btn.querySelector(".page-like-btn__icon");
 
+    btn.style.transition = "background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease";
+
     function render() {
       countEl.textContent = (likeBase + (liked ? 1 : 0)).toLocaleString();
       iconEl.textContent = liked ? "❤️" : "🤍";
       btn.setAttribute("aria-pressed", liked ? "true" : "false");
+      // subtle "liked" tint
+      btn.style.borderColor = liked ? "rgba(220, 38, 38, 0.45)" : "rgba(127, 127, 127, 0.3)";
+      btn.style.backgroundColor = liked ? "rgba(220, 38, 38, 0.08)" : "transparent";
+      btn.style.color = liked ? "#dc2626" : "inherit";
     }
     render();
 
