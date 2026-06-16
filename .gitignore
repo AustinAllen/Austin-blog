@@ -15,3 +15,7 @@ node_modules/
 output/playwright/
 test-results/
 vendor
+
+# Local PDFs (resumes, papers) — keep out of the repo; the demo example_pdf.pdf stays tracked
+assets/pdf/*.pdf
+!assets/pdf/example_pdf.pdf
