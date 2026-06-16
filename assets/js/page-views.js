@@ -22,7 +22,7 @@
   // ---- Views: seeded baseline + real GoatCounter count ----
   var vEl = document.querySelector(".page-views__count[data-goatcounter-code]");
   if (vEl) {
-    var viewBase = 200 + (seed % 800); // 200–999, stable per page
+    var viewBase = 800 + (seed % 1700); // 800–2499, stable per page (kept well above likes)
     var code = vEl.getAttribute("data-goatcounter-code");
     var endpoint = "https://" + code + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json";
     fetch(endpoint)
@@ -41,7 +41,7 @@
   // ---- Likes: seeded baseline, toggles + remembers the visitor's like ----
   var btn = document.querySelector(".page-like-btn");
   if (btn) {
-    var likeBase = 100 + ((seed >>> 5) % 200); // 100–299, stable per page
+    var likeBase = 100 + ((seed >>> 5) % 150); // 100–249, stable per page
     var key = "liked:" + path;
     var liked = localStorage.getItem(key) === "1";
     var countEl = btn.querySelector(".page-like-btn__count");
