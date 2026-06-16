@@ -13,14 +13,17 @@
     "https://" + code + ".goatcounter.com/counter/" + encodeURIComponent(window.location.pathname) + ".json";
 
   fetch(endpoint)
+    // GoatCounter returns a JSON body even for not-yet-visited pages (HTTP 404
+    // with {"count":"0"}), so parse the body regardless of status code.
     .then(function (res) {
-      return res.ok ? res.json() : Promise.reject(res.status);
+      return res.json();
     })
     .then(function (data) {
-      // GoatCounter returns pre-formatted strings, e.g. {"count":"1,234"}.
+      // Pre-formatted strings, e.g. {"count":"1,234"}.
       el.textContent = data.count != null ? data.count : "0";
     })
     .catch(function () {
+      // Only true network/CORS failures land here — hide the badge then.
       var badge = el.closest(".page-views");
       if (badge) badge.style.display = "none";
     });

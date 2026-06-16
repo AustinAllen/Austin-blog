@@ -121,7 +121,7 @@ analytics:
 #      ("Allow adding visitor counts to your pages") so the public count API works.
 #   3. Put your CODE (the subdomain only, no https://) below and rebuild.
 # Leave empty to hide the badges entirely (the site works fine without it).
-goatcounter_code: "" # e.g. "austinfu"
+goatcounter_code: "austinfu" # https://austinfu.goatcounter.com
 
 # For Google Search Console, see https://support.google.com/webmasters/answer/9008080?hl=en#meta_tag_verification&zippy=%2Chtml-tag
 google_site_verification: # your google-site-verification ID (Google Search Console)
