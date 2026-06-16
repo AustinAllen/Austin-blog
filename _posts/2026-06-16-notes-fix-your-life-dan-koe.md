@@ -1,6 +1,6 @@
 ---
 layout: post_views
-giscus_comments: true
+giscus_comments: false # staged: set true once repo_id+category_id are in _config.yml
 title: "Article Notes: How to Fix Your Entire Life in a Day"
 date: 2026-06-16
 description: My summary and takeaways from Dan Koe's essay on changing your life by changing your identity, not just your habits. Link to the original inside — go read it.

@@ -1,6 +1,6 @@
 ---
 layout: post_views
-giscus_comments: true
+giscus_comments: false # staged: set true once repo_id+category_id are in _config.yml
 title: "Article Notes: Can a Language Model Leak Your Personal Data?"
 date: 2026-06-16
 description: My notes on ProPILE, a NeurIPS 2023 paper showing that LLMs can reveal the real personal information of people in their training data — and a tool that lets you check your own exposure. Links to the original inside.

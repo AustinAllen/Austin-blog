@@ -1,6 +1,6 @@
 ---
 layout: post_views
-giscus_comments: true
+giscus_comments: false # staged: set true once repo_id+category_id are in _config.yml
 title: "Keep It Local: Why Your AI Assistant Shouldn't Live in Someone Else's Cloud"
 date: 2026-06-16
 description: Every message and file you hand a cloud AI service lives on hardware you don't control — and may outlive the conversation. Here's the case for running a local LLM behind your own agentic platform.

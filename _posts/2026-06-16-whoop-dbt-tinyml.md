@@ -1,6 +1,6 @@
 ---
 layout: post_views
-giscus_comments: true
+giscus_comments: false # staged: set true once repo_id+category_id are in _config.yml
 title: "From My Wrist to the Warehouse: WHOOP, dbt, and a TinyML Idea"
 date: 2026-06-16
 description: I wear a WHOOP every day. Reading dbt Labs' WHOOP case study made me see the whole pipeline — from the sensor on my wrist to the models in the warehouse — and where my TinyML interest could plug into my analytics work.
