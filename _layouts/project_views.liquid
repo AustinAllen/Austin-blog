@@ -4,33 +4,30 @@ layout: page
 
 {{ content }}
 
-{% assign show_like = false %}
-{% if site.lyket_api_key and site.lyket_api_key != "" %}{% assign show_like = true %}{% endif %}
-{% assign show_views = false %}
-{% if site.goatcounter_code and site.goatcounter_code != "" %}{% assign show_views = true %}{% endif %}
-
-{% if show_like or show_views %}
-  <div class="page-engagement" style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
-    {% if show_like %}
-      <div data-lyket-type="like" data-lyket-namespace="project" data-lyket-id="{{ page.url | slugify }}"></div>
-    {% endif %}
-    {% if show_views %}
-      <div
-        class="page-views"
-        style="font-size: 0.9rem; opacity: 0.7; display: flex; align-items: center; gap: 0.4rem;"
-        aria-label="view count"
-      >
-        <span class="page-views__icon" aria-hidden="true">👁</span>
-        <span class="page-views__count" data-goatcounter-code="{{ site.goatcounter_code }}">…</span>
-        <span class="page-views__label">views</span>
-      </div>
-    {% endif %}
-  </div>
-  {% if show_like %}
-    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey={{ site.lyket_api_key }}"></script>
+<div class="page-engagement" style="margin-top: 1.5rem; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap;">
+  <button
+    type="button"
+    class="page-like-btn"
+    aria-pressed="false"
+    aria-label="like this page"
+    style="display: inline-flex; align-items: center; gap: 0.4rem; cursor: pointer; border: 1px solid rgba(127, 127, 127, 0.3); background: transparent; color: inherit; border-radius: 999px; padding: 0.3rem 0.85rem; font: inherit; font-size: 0.9rem;"
+  >
+    <span class="page-like-btn__icon" aria-hidden="true">🤍</span>
+    <span class="page-like-btn__count">…</span>
+  </button>
+  {% if site.goatcounter_code and site.goatcounter_code != "" %}
+    <div
+      class="page-views"
+      style="font-size: 0.9rem; opacity: 0.7; display: flex; align-items: center; gap: 0.4rem;"
+      aria-label="view count"
+    >
+      <span class="page-views__icon" aria-hidden="true">👁</span>
+      <span class="page-views__count" data-goatcounter-code="{{ site.goatcounter_code }}">…</span>
+      <span class="page-views__label">views</span>
+    </div>
   {% endif %}
-  {% if show_views %}
-    <script data-goatcounter="https://{{ site.goatcounter_code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-    <script src="{{ '/assets/js/page-views.js' | relative_url }}"></script>
-  {% endif %}
+</div>
+{% if site.goatcounter_code and site.goatcounter_code != "" %}
+  <script data-goatcounter="https://{{ site.goatcounter_code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 {% endif %}
+<script src="{{ '/assets/js/page-views.js' | relative_url }}"></script>

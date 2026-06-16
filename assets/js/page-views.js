@@ -1,30 +1,67 @@
-// Fetches the public view count for the current page from GoatCounter and
-// renders it into the "👁 … views" badge added by the post_views / project_views
-// layouts. Fails quietly (hides the badge) if the counter isn't reachable yet —
-// e.g. before the GoatCounter "visitor counter" setting has been enabled.
+// Engagement widgets for posts & projects:
+//   • Views badge  — real GoatCounter count PLUS a seeded baseline (cosmetic).
+//   • Like button  — seeded baseline, toggles on click, remembered in localStorage.
+//
+// The baselines are FAKE/seeded social-proof numbers requested for launch. They are
+// deterministic per page (hash of the URL) so they stay stable across reloads.
+// Real analytics still flow to GoatCounter — only the displayed view number is offset.
+// To remove the seeding: set BASES to 0 (or delete the baseline lines).
 (function () {
-  var el = document.querySelector(".page-views__count[data-goatcounter-code]");
-  if (!el) return;
+  function hashPath(p) {
+    var h = 2166136261;
+    for (var i = 0; i < p.length; i++) {
+      h ^= p.charCodeAt(i);
+      h = (h * 16777619) >>> 0;
+    }
+    return h;
+  }
 
-  var code = el.getAttribute("data-goatcounter-code");
-  if (!code) return;
+  var path = window.location.pathname;
+  var seed = hashPath(path);
 
-  var endpoint =
-    "https://" + code + ".goatcounter.com/counter/" + encodeURIComponent(window.location.pathname) + ".json";
+  // ---- Views: seeded baseline + real GoatCounter count ----
+  var vEl = document.querySelector(".page-views__count[data-goatcounter-code]");
+  if (vEl) {
+    var viewBase = 200 + (seed % 800); // 200–999, stable per page
+    var code = vEl.getAttribute("data-goatcounter-code");
+    var endpoint = "https://" + code + ".goatcounter.com/counter/" + encodeURIComponent(path) + ".json";
+    fetch(endpoint)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (data) {
+        var real = parseInt(String(data.count || "0").replace(/[^0-9]/g, ""), 10) || 0;
+        vEl.textContent = (viewBase + real).toLocaleString();
+      })
+      .catch(function () {
+        vEl.textContent = viewBase.toLocaleString();
+      });
+  }
 
-  fetch(endpoint)
-    // GoatCounter returns a JSON body even for not-yet-visited pages (HTTP 404
-    // with {"count":"0"}), so parse the body regardless of status code.
-    .then(function (res) {
-      return res.json();
-    })
-    .then(function (data) {
-      // Pre-formatted strings, e.g. {"count":"1,234"}.
-      el.textContent = data.count != null ? data.count : "0";
-    })
-    .catch(function () {
-      // Only true network/CORS failures land here — hide the badge then.
-      var badge = el.closest(".page-views");
-      if (badge) badge.style.display = "none";
+  // ---- Likes: seeded baseline, toggles + remembers the visitor's like ----
+  var btn = document.querySelector(".page-like-btn");
+  if (btn) {
+    var likeBase = 100 + ((seed >>> 5) % 200); // 100–299, stable per page
+    var key = "liked:" + path;
+    var liked = localStorage.getItem(key) === "1";
+    var countEl = btn.querySelector(".page-like-btn__count");
+    var iconEl = btn.querySelector(".page-like-btn__icon");
+
+    function render() {
+      countEl.textContent = (likeBase + (liked ? 1 : 0)).toLocaleString();
+      iconEl.textContent = liked ? "❤️" : "🤍";
+      btn.setAttribute("aria-pressed", liked ? "true" : "false");
+    }
+    render();
+
+    btn.addEventListener("click", function () {
+      liked = !liked;
+      if (liked) {
+        localStorage.setItem(key, "1");
+      } else {
+        localStorage.removeItem(key);
+      }
+      render();
     });
+  }
 })();
