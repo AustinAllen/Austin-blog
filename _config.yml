@@ -127,7 +127,7 @@ goatcounter_code: "austinfu" # https://austinfu.goatcounter.com
 # Setup (one time): register at https://lyket.dev/, create a project, copy its
 # PUBLIC API key, and paste it below. Leave empty to hide the like buttons.
 # Likes are deduped per visitor via browser localStorage (no visitor login).
-lyket_api_key: "" # your Lyket PUBLIC api key (looks like a long token)
+lyket_api_key: "pt_7d3f3934afb5ddbf6eb89ba9be17dd" # Lyket PUBLIC api key
 
 # For Google Search Console, see https://support.google.com/webmasters/answer/9008080?hl=en#meta_tag_verification&zippy=%2Chtml-tag
 google_site_verification: # your google-site-verification ID (Google Search Console)
