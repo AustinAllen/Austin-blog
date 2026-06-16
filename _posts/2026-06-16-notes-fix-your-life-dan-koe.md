@@ -1,5 +1,6 @@
 ---
 layout: post_views
+giscus_comments: true
 title: "Article Notes: How to Fix Your Entire Life in a Day"
 date: 2026-06-16
 description: My summary and takeaways from Dan Koe's essay on changing your life by changing your identity, not just your habits. Link to the original inside — go read it.

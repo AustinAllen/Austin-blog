@@ -4,6 +4,13 @@ layout: page
 
 {{ content }}
 
+{% if site.lyket_api_key and site.lyket_api_key != "" %}
+  <div class="page-like" style="margin-top: 1.5rem;">
+    <div data-lyket-type="like" data-lyket-namespace="project" data-lyket-id="{{ page.url | slugify }}"></div>
+  </div>
+  <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey={{ site.lyket_api_key }}"></script>
+{% endif %}
+
 {% if site.goatcounter_code and site.goatcounter_code != "" %}
   <div
     class="page-views"
