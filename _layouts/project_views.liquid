@@ -1,0 +1,19 @@
+---
+layout: page
+---
+
+{{ content }}
+
+{% if site.goatcounter_code and site.goatcounter_code != "" %}
+  <div
+    class="page-views"
+    style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.7; display: flex; align-items: center; gap: 0.4rem;"
+    aria-label="view count"
+  >
+    <span class="page-views__icon" aria-hidden="true">👁</span>
+    <span class="page-views__count" data-goatcounter-code="{{ site.goatcounter_code }}">…</span>
+    <span class="page-views__label">views</span>
+  </div>
+  <script data-goatcounter="https://{{ site.goatcounter_code }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+  <script src="{{ '/assets/js/page-views.js' | relative_url }}"></script>
+{% endif %}

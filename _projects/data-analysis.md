@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: project_views
 title: When the City Rides — A Bike-Share EDA
 description: Exploring a year of bike-share trips to find the difference between commuters and casual riders, hidden in the shape of the day.
 img: assets/img/bike-share-eda.jpg

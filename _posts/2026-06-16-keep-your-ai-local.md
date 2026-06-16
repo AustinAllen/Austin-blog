@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_views
 title: "Keep It Local: Why Your AI Assistant Shouldn't Live in Someone Else's Cloud"
 date: 2026-06-16
 description: Every message and file you hand a cloud AI service lives on hardware you don't control — and may outlive the conversation. Here's the case for running a local LLM behind your own agentic platform.

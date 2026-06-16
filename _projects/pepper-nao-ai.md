@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: project_views
 title: Conversational AI for Pepper & NAO Robots
 description: Leading AI features for SoftBank's Pepper and NAO humanoid robots — natural language and computer vision shipped across 3,000+ educational installations.
 img: assets/img/pepper-nao-ai.jpg

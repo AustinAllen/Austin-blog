@@ -114,6 +114,15 @@ analytics:
   pirsch: # your Pirsch analytics site ID (length 32 characters)
   openpanel: # your Openpanel analytics client ID (format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)
 
+# GoatCounter public view counter — shows a "👁 N views" badge on each post & project.
+# Setup (one time):
+#   1. Create a free site at https://www.goatcounter.com/ — you pick CODE, giving you CODE.goatcounter.com
+#   2. In GoatCounter: Settings → "Site settings" → enable the visitor counter
+#      ("Allow adding visitor counts to your pages") so the public count API works.
+#   3. Put your CODE (the subdomain only, no https://) below and rebuild.
+# Leave empty to hide the badges entirely (the site works fine without it).
+goatcounter_code: "" # e.g. "austinfu"
+
 # For Google Search Console, see https://support.google.com/webmasters/answer/9008080?hl=en#meta_tag_verification&zippy=%2Chtml-tag
 google_site_verification: # your google-site-verification ID (Google Search Console)
 bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)

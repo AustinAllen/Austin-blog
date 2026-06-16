@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: project_views
 title: Should You Go For It? — 4th-Down Analytics
 description: Using play-by-play data to ask when NFL teams should go for it on fourth down — and how often they leave points on the field by punting.
 img: assets/img/fourth-down-analytics.jpg

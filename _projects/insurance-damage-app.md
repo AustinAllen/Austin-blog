@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: project_views
 title: Vehicle Damage-Assessment Mobile App
 description: An Android app for insurance damage assessment built on Baidu Maps APIs, with core algorithms refactored for a 25% memory reduction.
 img: assets/img/insurance-damage-app.jpg

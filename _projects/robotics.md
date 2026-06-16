@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: project_views
 title: Self-Balancing Robot
 description: A two-wheel inverted-pendulum robot that stays upright using an IMU and a cascaded PID controller.
 img: assets/img/self-balancing-robot.jpg
