@@ -158,7 +158,7 @@ giscus:
   repo_id: R_kgDOS14ARw
   category: Announcements # name of the category under which discussions will be created
   category_id: DIC_kwDOS14AR84C_PKR
-  mapping: title # identify discussions by post title
+  mapping: pathname # identify discussions by page URL/pathname (rename-proof)
   strict: 1 # use strict identification mode
   reactions_enabled: 1 # enable (1) or disable (0) emoji reactions
   input_position: bottom # whether to display input form below (bottom) or above (top) the comments
