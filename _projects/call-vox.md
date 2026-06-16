@@ -1,5 +1,6 @@
 ---
 layout: project_views
+giscus_comments: true
 title: "Call Vox — Real-Time Communication App"
 description: A WebRTC-based real-time communication app for healthcare and remote learning, shipped to iOS with 10K+ monthly active users.
 img: assets/img/call-vox.jpg
