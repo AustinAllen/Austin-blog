@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: AI That Actually Saves Whales"
-date: 2026-06-18
+date: 2026-06-18 10:00:00
 description: My notes on a deeplearning.ai piece about WhaleSpotter — thermal cameras plus a neural net that spot whales in real time and warn ships before they hit them. This is the kind of AI I got into the field for: a concrete problem, a measurable life saved. Link to the original inside.
 tags: ai
 categories: general
