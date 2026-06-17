@@ -3,6 +3,7 @@ layout: project_views
 giscus_comments: true
 title: "AI Agents — A Practitioner's Series"
 description: A five-part written series taking AI agents from "what are they" to "how do you deploy one responsibly in the enterprise" — the loop, the frameworks, building with Claude, and the trust layers.
+img: assets/img/ai-agent-series.jpg
 importance: 1
 category: ai
 mermaid:
