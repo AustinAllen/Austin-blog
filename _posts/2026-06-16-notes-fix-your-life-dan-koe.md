@@ -6,7 +6,7 @@ date: 2026-06-16
 description: My summary and takeaways from Dan Koe's essay on changing your life by changing your identity, not just your habits. Link to the original inside — go read it.
 tags: life
 categories: general
-featured: true
+featured: false
 ---
 
 Every so often I read something that reorganizes how I think about a problem. Dan Koe's

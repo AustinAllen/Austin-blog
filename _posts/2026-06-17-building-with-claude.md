@@ -6,7 +6,7 @@ date: 2026-06-17 18:00:00
 description: Part 4 of my AI Agent series. We zoom into the model at the center of the agent — how to make tool use robust, how to force the output into a shape your code can trust, and how the Model Context Protocol lets an agent plug into real systems without hand-writing every integration.
 tags: [ai, agents]
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

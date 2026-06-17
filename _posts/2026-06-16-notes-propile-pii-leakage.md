@@ -6,7 +6,7 @@ date: 2026-06-16
 description: My notes on ProPILE, a NeurIPS 2023 paper showing that LLMs can reveal the real personal information of people in their training data — and a tool that lets you check your own exposure. Links to the original inside.
 tags: ai
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

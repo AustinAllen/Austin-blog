@@ -6,7 +6,7 @@ date: 2026-06-17 13:00:00
 description: My notes on "Think in Strokes, Not Pixels" — a method that fixes text-to-image models' biggest weakness (getting spatial relationships and attributes wrong) by making them plan, sketch, inspect, and refine like a human painter instead of generating the whole image in one shot. Links to the paper inside.
 tags: ai
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

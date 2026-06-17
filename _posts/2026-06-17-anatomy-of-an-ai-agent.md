@@ -6,7 +6,7 @@ date: 2026-06-17 16:00:00
 description: Part 2 of my AI Agent series. We build a real agent in ~30 lines of Python — the reason → act → observe loop, a tool the model can call, and the message bookkeeping that makes it work. Once you've written the loop by hand, the magic disappears.
 tags: [ai, agents]
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

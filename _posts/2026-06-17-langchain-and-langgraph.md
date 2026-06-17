@@ -6,7 +6,7 @@ date: 2026-06-17 17:00:00
 description: Part 3 of my AI Agent series. LangChain and LangGraph get lumped together, but they solve different problems. LangChain composes a known sequence of steps; LangGraph orchestrates a looping, branching, stateful agent. Here's what each is actually for — with code.
 tags: [ai, agents]
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

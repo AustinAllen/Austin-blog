@@ -6,7 +6,7 @@ date: 2026-06-17 19:00:00
 description: The finale of my AI Agent series. A working agent is the easy 20%. The hard 80% — and the part that decides whether it ships — is evaluation, guardrails, cost, security, and the human-in-the-loop. Here's how I think about turning a demo into something an organization will actually deploy.
 tags: [ai, agents]
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

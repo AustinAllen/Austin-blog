@@ -6,7 +6,7 @@ date: 2026-06-16
 description: I wear a WHOOP every day. Reading dbt Labs' WHOOP case study made me see the whole pipeline — from the sensor on my wrist to the models in the warehouse — and where my TinyML interest could plug into my analytics work.
 tags: [data, tinyml]
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true

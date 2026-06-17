@@ -6,7 +6,7 @@ date: 2026-06-15
 description: Snowflake stores and computes; dbt transforms and tests. Here's how the two fit into one modern data stack — and why the split makes sense.
 tags: data
 categories: general
-featured: true
+featured: false
 mermaid:
   enabled: true
   zoomable: true
