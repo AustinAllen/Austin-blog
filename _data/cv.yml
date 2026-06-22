@@ -26,6 +26,19 @@ cv:
 
   sections:
     Experience:
+      - company: academyEX
+        position: Consultant — AI & Learner Analytics
+        location: Auckland, New Zealand
+        start_date: 2025
+        end_date: present
+        highlights:
+          - Designed and implemented a Digital Twin system that models each learner's behavior, engagement patterns, and risk indicators using machine learning and behavioral analytics, delivering a working prototype that helps institutions proactively identify at-risk students.
+          - Developed and evaluated ML models (regression, classification, clustering) to detect disengagement, late submissions, and dropout likelihood, improving early-risk detection by integrating behavioral, temporal, and engagement features.
+          - Built scalable data pipelines in Python (Pandas, NumPy) and SQL to clean, integrate, and transform multi-source learner data, ensuring high-quality model inputs and enabling continuous model updates.
+          - Created interactive analytics dashboards visualizing learning journeys, behavioral trajectories, and early-warning signals for educators and academic advisors.
+          - Introduced explainable AI (XAI) components and conducted literature reviews on fairness and ethical learner analytics to ensure transparent, responsible model design for non-technical stakeholders.
+          - Collaborated with senior researchers and product teams to define requirements and validate modeling assumptions, and presented findings on learner modeling, fairness, and predictive analytics to academic and industry mentors.
+
       - company: SoftBank Robotics Group Corp
         position: Project & Product Manager — AI & Robotics
         location: Japan / France / China
