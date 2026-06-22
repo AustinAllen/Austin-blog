@@ -6,7 +6,7 @@ date: 2026-06-18 19:00:00
 description: "An introduction to an idea I can't stop thinking about — LG's CLOiD home robot and the 'Zero Labor Home' it unveiled at CES 2026. A robot that cooks, does laundry, and folds clothes. As a robotics person, here's why this feels like a real threshold, and the questions it opens."
 tags: ai
 categories: general
-featured: false
+featured: true
 mermaid:
   enabled: true
   zoomable: true
