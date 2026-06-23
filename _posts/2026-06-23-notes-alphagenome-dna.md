@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: AlphaGenome Reads the 98% of DNA That Doesn't Code for Proteins"
-date: 2026-06-18 15:00:00
+date: 2026-06-23 15:00:00
 description: "My notes on a deeplearning.ai piece about Google DeepMind's AlphaGenome — a model that reads up to a million DNA letters at once and predicts how the non-coding genome regulates genes. This is the digital-health side of AI I care about. Notes, the Nature paper, and why it matters."
 tags: ai
 categories: general

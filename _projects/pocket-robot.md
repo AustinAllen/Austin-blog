@@ -14,7 +14,7 @@ mermaid:
 A **pocket companion robot** is the idea I can't stop turning over: a small AI *character* you carry
 with you — not a phone app, not a smart speaker, but something with a face, a personality, and a sense
 of being *along for the day*. Products like [living.ai](https://living.ai/)'s **EMO** and **AIBI**
-(which I wrote up in my [notes post]({% post_url 2026-06-18-notes-living-ai-pocket-robots %})) prove
+(which I wrote up in my [notes post]({% post_url 2026-06-23-notes-living-ai-pocket-robots %})) prove
 the category is real. This is my **concept exploration** of where it should go next.
 
 It's a design project, not a product — a place to think out loud, grounded in having actually built
@@ -72,4 +72,4 @@ trust and personality layer). It's a concept for now — but it's the kind of pr
 build.
 
 *Got thoughts on what a pocket companion should — or shouldn't — do? The comments are open, and on the
-[notes post]({% post_url 2026-06-18-notes-living-ai-pocket-robots %}) too.*
+[notes post]({% post_url 2026-06-23-notes-living-ai-pocket-robots %}) too.*

@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: EMO, AIBI, and the Pocket-Robot Idea"
-date: 2026-06-18 17:00:00
+date: 2026-06-23 17:00:00
 description: "My notes on living.ai's companion robots — EMO, the desktop pet with an emotion engine, and AIBI, the ultra-portable pocket pet. Coming from years of building social robots at SoftBank, the 'pocket robot' concept hits home. Notes, and a new concept project inside."
 tags: ai
 categories: general

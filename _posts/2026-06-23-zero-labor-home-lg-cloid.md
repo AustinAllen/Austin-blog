@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "When the Robot Walks Into Your House: LG's \"Zero Labor Home\""
-date: 2026-06-18 19:00:00
+date: 2026-06-23 19:00:00
 description: "An introduction to an idea I can't stop thinking about — LG's CLOiD home robot and the 'Zero Labor Home' it unveiled at CES 2026. A robot that cooks, does laundry, and folds clothes. As a robotics person, here's why this feels like a real threshold, and the questions it opens."
 tags: ai
 categories: general
@@ -91,7 +91,7 @@ phrase worth poking at:
   if it's a luxury product, it risks widening the gap between who gets their time back and who doesn't.
 - **An always-watching robot in the home.** Cameras and sensors roaming your living space, monitoring
   seniors' wellness — that's powerful for care and a real **privacy** question at the same time. The
-  same camera-and-mic tension I flagged for the [pocket robot]({% post_url 2026-06-18-notes-living-ai-pocket-robots %})
+  same camera-and-mic tension I flagged for the [pocket robot]({% post_url 2026-06-23-notes-living-ai-pocket-robots %})
   applies here, at house scale.
 - **Is "zero labor" even what we want?** Some chores are drudgery; some are the small rituals that make
   a place feel like home. I don't think the goal is *zero* — it's giving people the *choice* about

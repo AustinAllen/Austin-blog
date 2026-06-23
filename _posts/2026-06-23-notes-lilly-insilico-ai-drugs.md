@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Eli Lilly's $2.75B Bet on AI-Designed Drugs"
-date: 2026-06-18 16:00:00
+date: 2026-06-23 16:00:00
 description: "My notes on a deeplearning.ai piece about Eli Lilly committing up to $2.75 billion to Insilico Medicine's AI drug-discovery platform. What the deal actually buys, how Insilico's AI designs molecules, and the honest caveat — no AI-discovered drug has been approved yet. Notes and sources inside."
 tags: ai
 categories: general
@@ -87,7 +87,7 @@ targets and designing molecules — which is real and valuable, but the long, ex
   billions, royalties. That's how a rational buyer prices a technology that's *promising but
   unproven* — and it's a template for valuing AI bets in any industry, not just pharma.
 - **It's the encouraging companion to the cautionary tales.** I just wrote up
-  [AlphaGenome reading the regulatory genome]({% post_url 2026-06-18-notes-alphagenome-dna %}); this
+  [AlphaGenome reading the regulatory genome]({% post_url 2026-06-23-notes-alphagenome-dna %}); this
   is the same digital-health thread one step downstream — from *understanding* biology to *designing
   molecules* against it. Seeing the pieces line up is genuinely exciting.
 - **"Fewer than 80 compounds" is the metric I'll remember.** Conventional discovery screens thousands.

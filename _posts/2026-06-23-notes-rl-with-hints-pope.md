@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Reinforcement Learning, But With Hints"
-date: 2026-06-18 14:00:00
+date: 2026-06-23 14:00:00
 description: "My notes on a deeplearning.ai piece about POPE — a way to train reasoning models on problems they can't yet solve, by feeding RL the first slice of a worked solution as a hint. The twist: the hints guide exploration but are never trained on directly. Notes, the paper, and why this is a clean idea."
 tags: ai
 categories: general

@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: SleepFM Reads One Night of Sleep to Forecast Disease"
-date: 2026-06-18 18:00:00
+date: 2026-06-23 18:00:00
 description: "My notes on a deeplearning.ai piece about SleepFM — a Stanford foundation model that reads a single night of sleep-lab data and flags risk for 130 conditions, some up to six years before symptoms. This is the digital-health AI I care about, with a real caveat about risk vs. diagnosis. Notes and the paper inside."
 tags: ai
 categories: general
@@ -92,8 +92,8 @@ research is exciting; the deployment ethics are the hard part.
 ## Why this stuck with me
 
 - **It's the digital-health thread I keep pulling.** This lands right next to my notes on
-  [AlphaGenome reading the regulatory genome]({% post_url 2026-06-18-notes-alphagenome-dna %}) and the
-  [Lilly–Insilico AI-drug deal]({% post_url 2026-06-18-notes-lilly-insilico-ai-drugs %}) — understand
+  [AlphaGenome reading the regulatory genome]({% post_url 2026-06-23-notes-alphagenome-dna %}) and the
+  [Lilly–Insilico AI-drug deal]({% post_url 2026-06-23-notes-lilly-insilico-ai-drugs %}) — understand
   biology, design the drug, *and now* catch the risk early. The pieces of an AI-assisted preventive-care
   loop are visibly assembling.
 - **Another foundation model on non-text signals.** Same story as
