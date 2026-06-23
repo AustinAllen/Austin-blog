@@ -6,7 +6,7 @@ date: 2026-06-24 16:00:00
 description: "My notes on the Composer 2 technical report — Cursor's coding model, built by continued-pretraining Kimi K2.5 and then running large-scale RL inside the same harness it ships in. The training recipe is interesting, but the part I keep coming back to is CursorBench: their argument that public coding benchmarks no longer measure real-world software engineering."
 tags: ai
 categories: general
-featured: false
+featured: true
 mermaid:
   enabled: true
   zoomable: true
