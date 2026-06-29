@@ -6,7 +6,7 @@ date: 2026-06-24 18:00:00
 description: "My notes on a deeplearning.ai piece about ESMFold2 — a structure-prediction model from Biohub and EvolutionaryScale that treats proteins, DNA, and RNA like text. The point that grabbed me: it can fold a molecule straight from its sequence without the multiple-sequence alignments AlphaFold3 leans on, which matters most exactly where biology is newest."
 tags: ai
 categories: general
-featured: false
+featured: true
 mermaid:
   enabled: true
   zoomable: true
