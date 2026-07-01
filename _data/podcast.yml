@@ -1,0 +1,45 @@
+# -----------------------------------------------------------------------------
+# Podcast content for the /podcast/ tab.
+#
+# This file drives the whole Podcast page. You never need to touch HTML —
+# just add categories and episodes here and the page rebuilds itself.
+#
+# STRUCTURE
+#   - Each top-level entry is a CATEGORY (a "shelf", like a YouTube playlist).
+#   - Each category has a list of `episodes`.
+#   - Each episode needs a `youtube` ID (the 11-character code from the URL)
+#     and a `title`. Everything else is optional.
+#
+# HOW TO GET THE YOUTUBE ID
+#   For https://www.youtube.com/watch?v=dQw4w9WgXcQ  the id is  dQw4w9WgXcQ
+#   For https://youtu.be/dQw4w9WgXcQ                 the id is  dQw4w9WgXcQ
+#   (Just the part after v= or after youtu.be/ — no other characters.)
+#
+# TEMPLATE — copy this into an `episodes:` list to add a new one:
+#   - title: "Episode title here"
+#     youtube: "REPLACE_WITH_11_CHAR_ID"
+#     date: 2026-07-01           # optional, shown on the card
+#     description: "One-line summary of the episode."   # optional
+#
+# Delete the `episodes: []` and add your own once you upload to YouTube.
+# -----------------------------------------------------------------------------
+
+- id: ai-agent
+  name: AI Agent
+  description: "Building, using, and reasoning about LLM-powered agents — the through-line of my work and my blog series."
+  episodes: []
+
+- id: ai-research
+  name: AI Research
+  description: "Walking through papers, models, and ideas I've been reading — the same notes that show up on the blog, in conversation form."
+  episodes: []
+
+- id: football
+  name: Football
+  description: "American football through an analytics lens — every fourth-down call is really an expected-value problem."
+  episodes: []
+
+- id: hobbies
+  name: Hobbies & Tinkering
+  description: "The off-topic corner: tinyML, small robotics builds, and whatever else I'm playing with."
+  episodes: []
