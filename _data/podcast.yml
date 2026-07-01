@@ -37,7 +37,9 @@
 - id: football
   name: Football
   description: "American football through an analytics lens — every fourth-down call is really an expected-value problem."
-  episodes: []
+  episodes:
+    - title: "Why teams should go for it on 4th down"
+      youtube: "dQw4w9WgXcQ"
 
 - id: hobbies
   name: Hobbies & Tinkering
