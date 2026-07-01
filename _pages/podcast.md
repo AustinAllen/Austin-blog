@@ -3,7 +3,7 @@ layout: page
 title: podcast
 permalink: /podcast/
 nav: true
-nav_order: 4
+nav_order: 3
 description: "My podcast — conversations on AI agents, AI research, football analytics, and whatever I'm tinkering with. Uploaded on YouTube, watchable right here."
 ---
 
