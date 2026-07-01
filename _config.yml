@@ -204,6 +204,9 @@ collections:
     output: true
   projects:
     output: true
+  podcast:
+    output: true
+    permalink: /podcast/:name/
   teachings:
     output: true
 

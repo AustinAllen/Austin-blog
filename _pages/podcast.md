@@ -7,18 +7,13 @@ nav_order: 3
 description: "My podcast — conversations on AI agents, AI research, football analytics, and whatever I'm tinkering with. Uploaded on YouTube, watchable right here."
 ---
 
-<!-- pages/podcast.md — content is driven entirely by _data/podcast.yml -->
+<!-- pages/podcast.md — categories from _data/podcast.yml, episodes from the _podcast/ collection -->
 
 <p class="podcast-intro">
   I record a podcast on the things I think about here: AI agents, research I'm reading,
-  American football through an analytics lens, and the odd hobby project. Everything lives on
-  YouTube — pick a category below and press play.
+  American football through an analytics lens, and the odd hobby project. Pick a category below and
+  click an episode to watch it on its own page.
 </p>
-
-{% assign total_episodes = 0 %}
-{% for category in site.data.podcast %}
-  {% assign total_episodes = total_episodes | plus: category.episodes.size %}
-{% endfor %}
 
 <!-- Category filter bar -->
 <div class="podcast-filters" role="tablist" aria-label="Podcast categories">
@@ -30,17 +25,16 @@ description: "My podcast — conversations on AI agents, AI research, football a
 
 <!-- Category shelves -->
 {% for category in site.data.podcast %}
+{% assign episodes = site.podcast | where: "category", category.id | sort: "date" | reverse %}
 <section class="podcast-shelf" data-category="{{ category.id }}" id="{{ category.id }}">
   <a href="#{{ category.id }}" class="podcast-shelf-anchor"><h2 class="podcast-shelf-title">{{ category.name }}</h2></a>
   {% if category.description %}<p class="podcast-shelf-desc">{{ category.description }}</p>{% endif %}
 
-  {% if category.episodes and category.episodes.size > 0 %}
+  {% if episodes.size > 0 %}
   <div class="podcast-grid">
-    {% for ep in category.episodes %}
-    <article class="podcast-card">
-      <div class="podcast-embed" data-yt="{{ ep.youtube }}" tabindex="0" role="button"
-           aria-label="Play: {{ ep.title | escape }}"
-           style="background-image:url('https://i.ytimg.com/vi/{{ ep.youtube }}/hqdefault.jpg');">
+    {% for ep in episodes %}
+    <a class="podcast-card" href="{{ ep.url | relative_url }}" aria-label="Watch: {{ ep.title | escape }}">
+      <div class="podcast-thumb" style="background-image:url('https://i.ytimg.com/vi/{{ ep.youtube }}/hqdefault.jpg');">
         <span class="podcast-play" aria-hidden="true">
           <svg viewBox="0 0 68 48" width="68" height="48"><path class="podcast-play-bg" d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z"></path><path d="M45 24 27 14v20" fill="#fff"></path></svg>
         </span>
@@ -50,7 +44,7 @@ description: "My podcast — conversations on AI agents, AI research, football a
         {% if ep.date %}<p class="podcast-card-date">{{ ep.date | date: "%B %-d, %Y" }}</p>{% endif %}
         {% if ep.description %}<p class="podcast-card-desc">{{ ep.description }}</p>{% endif %}
       </div>
-    </article>
+    </a>
     {% endfor %}
   </div>
   {% else %}
@@ -96,22 +90,20 @@ description: "My podcast — conversations on AI agents, AI research, football a
     border: 1px solid var(--global-divider-color, #e5e7eb);
     border-radius: 12px; overflow: hidden;
     background: var(--global-card-bg-color, transparent);
+    color: inherit; text-decoration: none;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   .podcast-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
 
-  .podcast-embed {
+  .podcast-thumb {
     position: relative; width: 100%; aspect-ratio: 16 / 9;
-    background-size: cover; background-position: center; cursor: pointer;
-    background-color: #000;
+    background-size: cover; background-position: center; background-color: #000;
   }
-  .podcast-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .podcast-play {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-    transition: opacity 0.15s ease;
   }
-  .podcast-play-bg { fill: #212121; fill-opacity: 0.8; }
-  .podcast-embed:hover .podcast-play-bg { fill: #f00; fill-opacity: 1; }
+  .podcast-play-bg { fill: #212121; fill-opacity: 0.8; transition: fill 0.15s ease, fill-opacity 0.15s ease; }
+  .podcast-card:hover .podcast-play-bg { fill: #f00; fill-opacity: 1; }
 
   .podcast-meta { padding: 0.9rem 1rem 1.1rem; }
   .podcast-card-title { margin: 0 0 0.25rem; font-size: 1.05rem; line-height: 1.3; }
@@ -126,26 +118,7 @@ description: "My podcast — conversations on AI agents, AI research, football a
 
 <script>
   (function () {
-    // Click-to-play facade: swap the thumbnail for the real iframe only when asked.
-    function loadVideo(el) {
-      var id = el.getAttribute("data-yt");
-      if (!id || el.querySelector("iframe")) return;
-      var iframe = document.createElement("iframe");
-      iframe.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-      iframe.setAttribute("allowfullscreen", "");
-      iframe.setAttribute("title", el.getAttribute("aria-label") || "Podcast episode");
-      iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
-      el.innerHTML = "";
-      el.appendChild(iframe);
-    }
-    document.querySelectorAll(".podcast-embed").forEach(function (el) {
-      el.addEventListener("click", function () { loadVideo(el); });
-      el.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); loadVideo(el); }
-      });
-    });
-
-    // Category filter buttons.
+    // Category filter buttons — toggle which shelves are visible.
     var buttons = document.querySelectorAll(".podcast-filter");
     var shelves = document.querySelectorAll(".podcast-shelf");
     buttons.forEach(function (btn) {

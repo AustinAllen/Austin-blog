@@ -1,49 +1,41 @@
 # -----------------------------------------------------------------------------
-# Podcast content for the /podcast/ tab.
+# Podcast CATEGORIES for the /podcast/ tab.
 #
-# This file drives the whole Podcast page. You never need to touch HTML —
-# just add categories and episodes here and the page rebuilds itself.
+# This file defines the category "shelves" and their order on the index page.
+# The actual EPISODES are individual files in the `_podcast/` folder — each one
+# becomes its own page (with its own URL and comments section), just like the
+# projects in `_projects/`.
 #
-# STRUCTURE
-#   - Each top-level entry is a CATEGORY (a "shelf", like a YouTube playlist).
-#   - Each category has a list of `episodes`.
-#   - Each episode needs a `youtube` ID (the 11-character code from the URL)
-#     and a `title`. Everything else is optional.
+# TO ADD A CATEGORY: add an entry below with a unique `id`, a `name`, and an
+# optional `description`. Order here = order on the page.
 #
-# HOW TO GET THE YOUTUBE ID
-#   For https://www.youtube.com/watch?v=dQw4w9WgXcQ  the id is  dQw4w9WgXcQ
-#   For https://youtu.be/dQw4w9WgXcQ                 the id is  dQw4w9WgXcQ
-#   (Just the part after v= or after youtu.be/ — no other characters.)
+# TO ADD AN EPISODE: create a file in `_podcast/`, e.g. `_podcast/my-episode.md`:
 #
-# TEMPLATE — copy this into an `episodes:` list to add a new one:
-#   - title: "Episode title here"
-#     youtube: "REPLACE_WITH_11_CHAR_ID"
-#     date: 2026-07-01           # optional, shown on the card
-#     description: "One-line summary of the episode."   # optional
+#   ---
+#   layout: podcast_episode
+#   title: "My episode title"
+#   date: 2026-07-05
+#   category: football          # must match an `id` below
+#   youtube: "REPLACE_11_CHAR_ID"
+#   description: "One-line summary."
+#   giscus_comments: true       # enables the comments section on that page
+#   ---
 #
-# Delete the `episodes: []` and add your own once you upload to YouTube.
+#   Optional show notes / links go here in Markdown.
 # -----------------------------------------------------------------------------
 
 - id: ai-agent
   name: AI Agent
   description: "Building, using, and reasoning about LLM-powered agents — the through-line of my work and my blog series."
-  episodes: []
 
 - id: ai-research
   name: AI Research
   description: "Walking through papers, models, and ideas I've been reading — the same notes that show up on the blog, in conversation form."
-  episodes: []
 
 - id: football
   name: Football
   description: "American football through an analytics lens — every fourth-down call is really an expected-value problem."
-  episodes:
-    - title: "Why teams should go for it on 4th down"
-      youtube: "dQw4w9WgXcQ"
-      date: 2026-07-01
-      description: "An expected-value look at when the math says go for it — and why coaches so often punt anyway."
 
 - id: hobbies
   name: Hobbies & Tinkering
   description: "The off-topic corner: tinyML, small robotics builds, and whatever else I'm playing with."
-  episodes: []
