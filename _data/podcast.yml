@@ -32,6 +32,10 @@
   name: AI Research
   description: "Walking through papers, models, and ideas I've been reading — the same notes that show up on the blog, in conversation form."
 
+- id: physical-ai
+  name: Physical AI
+  description: "AI that acts in the real world — robotics, embodied agents, and the systems that bridge perception, control, and action."
+
 - id: football
   name: Football
   description: "American football through an analytics lens — every fourth-down call is really an expected-value problem."
