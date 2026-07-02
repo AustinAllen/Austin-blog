@@ -9,7 +9,7 @@ categories: general
 mermaid:
   enabled: true
   zoomable: true
-featured: false
+featured: true
 ---
 
 Most of the model launches I write up here are about capability — a new score, a new trick, a new size
