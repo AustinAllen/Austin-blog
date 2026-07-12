@@ -78,7 +78,7 @@ between a lab curiosity and a technology with a path.
 
 - **The "boring" LLM is the enabling piece.** Bolting a fine-tuned Qwen3-4B on the end as a corrector is
   the unglamorous move that makes the noisy signal usable — the same "shared infrastructure unlocks the
-  capability" pattern I keep noticing, from [SCP for science]({% post_url 2026-07-01-notes-scp-scientific-agents %})
+  capability" pattern I keep noticing, from [SCP for science]({% post_url 2026-07-13-notes-scp-scientific-agents %})
   to Stack-Overflow-for-agents.
 - **Non-invasive is the whole ethical ballgame.** Plenty of impressive BCI results require electrodes *in*
   the brain. Getting *any* signal this good from a scanner you just sit near changes who this could ever

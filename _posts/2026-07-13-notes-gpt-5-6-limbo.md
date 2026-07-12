@@ -9,7 +9,7 @@ categories: general
 featured: false
 ---
 
-Earlier this month I wrote up [GPT-5.6's approved-partners launch]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
+Earlier today I wrote up [GPT-5.6's approved-partners launch]({% post_url 2026-07-13-notes-gpt-5-6-approved-partners %})
 and said the benchmarks were the side plot and the access gate was the story. A second *Batch* piece —
 **"GPT-5.6 Lands in Limbo"** — fills in the numbers I was missing, so this is a short follow-up on what's
 actually new rather than a re-run. These are my notes.
@@ -52,7 +52,7 @@ generation mid-stream to review), **or even account-level reviews**. The safety 
 
 - **"Launched" now needs an asterisk.** Twenty organizations is a number that would've read as "closed
   alpha" a year ago. The vocabulary of releases is drifting, and it's worth being precise about what
-  "available" means. My earlier post's [approved-partners diagram]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
+  "available" means. My earlier post's [approved-partners diagram]({% post_url 2026-07-13-notes-gpt-5-6-approved-partners %})
   had "everyone else" waiting — this note just puts a *20* on the other box.
 - **The capability and the restriction share a cause.** The bio-benchmark jump and the aggressive
   safeguards aren't in tension — they're the *same fact* seen from two sides. That's the honest, hard

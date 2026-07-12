@@ -9,7 +9,7 @@ categories: general
 featured: false
 ---
 
-Earlier this month I wrote up [GPT-5.6 launching into a government-vetted preview]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
+Earlier today I wrote up [GPT-5.6 launching into a government-vetted preview]({% post_url 2026-07-13-notes-gpt-5-6-approved-partners %})
 and called the access gate the real story. Here's the same story from the other side of the fence: a
 frontier lab getting *out* of the penalty box. I read a *Batch* piece on the U.S. **lifting export
 controls on Claude**, and it's a useful bookend. These are my notes.

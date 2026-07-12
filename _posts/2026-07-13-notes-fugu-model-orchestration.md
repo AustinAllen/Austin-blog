@@ -75,7 +75,7 @@ Sakana API, OpenRouter, and Vercel (outside Europe).
 
 The article is explicit about the geopolitical backdrop, and it ties my whole day of notes together: U.S.
 restrictions on [Claude Fable 5]({% post_url 2026-07-13-notes-us-lifts-claude-export-controls %}) and
-[GPT-5.6]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %}) access have **driven interest in
+[GPT-5.6]({% post_url 2026-07-13-notes-gpt-5-6-approved-partners %}) access have **driven interest in
 orchestration**. When any one provider might be gated, throttled, or off-limits tomorrow, a layer that can
 **re-route to whoever's available** stops being a nice-to-have and becomes risk management. As the piece
 puts it: *"developers can put other companies' models to work and become the API provider themselves."*
@@ -84,7 +84,7 @@ puts it: *"developers can put other companies' models to work and become the API
 
 - **The value is migrating to the router.** A year ago the moat was the model. Increasingly it's the
   *orchestration* around models — the same "the interesting layer is moving up" pattern I hit with
-  [SCP for science]({% post_url 2026-07-01-notes-scp-scientific-agents %}). Fugu is that thesis pointed at
+  [SCP for science]({% post_url 2026-07-13-notes-scp-scientific-agents %}). Fugu is that thesis pointed at
   general-purpose work.
 - **Multi-model is a hedge against policy, not just quality.** We usually justify routing on cost or
   accuracy. Fugu's pitch adds a third axis — *availability under geopolitical uncertainty* — which is a

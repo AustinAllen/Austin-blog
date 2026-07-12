@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: GPT-5.6 Arrives — but Only for Approved Partners"
-date: 2026-07-02 12:00:00
+date: 2026-07-13 12:00:00
 description: "My notes on a Batch piece about GPT-5.6 — OpenAI's new Sol / Terra / Luna tiers — launching under a government-vetted, approved-partners-only preview. The benchmark story is almost the side plot; the real one is Washington quietly acquiring a say over when frontier models ship, and what that does to everyone downstream."
 tags: ai
 categories: general

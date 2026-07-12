@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Paper Notes: SCP — a Global Web of Autonomous Scientific Agents"
-date: 2026-07-01 12:00:00
+date: 2026-07-13 12:00:00
 description: "My notes on SCP, the Science Context Protocol from Shanghai AI Lab — an open standard that does for autonomous science labs what MCP did for LLM tool use: one protocol layer so AI agents, datasets, models, and physical wet-lab instruments can discover, call, and compose each other across institutions."
 tags: ai
 categories: general
