@@ -2,14 +2,14 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: GPT-5.6 Lands in Limbo (a Follow-up)"
-date: 2026-07-03 19:00:00
+date: 2026-07-13 19:00:00
 description: "A follow-up to my earlier GPT-5.6 note, with the numbers filled in: the preview is ~20 government-approved organizations, OpenAI says it doesn't want government-controlled access to become normal, and the safeguards now reach the cheap models too — which is where the everyday developer friction starts."
 tags: ai
 categories: general
 featured: false
 ---
 
-Yesterday I wrote up [GPT-5.6's approved-partners launch]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
+Earlier this month I wrote up [GPT-5.6's approved-partners launch]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
 and said the benchmarks were the side plot and the access gate was the story. A second *Batch* piece —
 **"GPT-5.6 Lands in Limbo"** — fills in the numbers I was missing, so this is a short follow-up on what's
 actually new rather than a re-run. These are my notes.
@@ -61,7 +61,7 @@ generation mid-stream to review), **or even account-level reviews**. The safety 
   downstream.
 - **This is why orchestration is having a moment.** A model you might not be able to get, wrapped in
   guardrails that might refuse you, is exactly the condition that makes a
-  [routing layer like Fugu]({% post_url 2026-07-03-notes-fugu-model-orchestration %}) look less like a
+  [routing layer like Fugu]({% post_url 2026-07-13-notes-fugu-model-orchestration %}) look less like a
   luxury and more like insurance.
 
 ## Worth discussing

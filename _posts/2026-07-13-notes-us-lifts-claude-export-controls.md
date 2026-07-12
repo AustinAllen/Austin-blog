@@ -2,14 +2,14 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: The U.S. Lifts Export Controls on Claude"
-date: 2026-07-03 10:00:00
+date: 2026-07-13 10:00:00
 description: "My notes on a Batch piece about the U.S. lifting export restrictions on Anthropic's Claude Fable 5 and Mythos 5 — the deal that ended the standoff (including a change of negotiator), why 'we can't kill every jailbreak' stopped being the argument, and the Claude Sonnet 5 launch that landed in the same week."
 tags: ai
 categories: general
 featured: false
 ---
 
-A week ago I wrote up [GPT-5.6 launching into a government-vetted preview]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
+Earlier this month I wrote up [GPT-5.6 launching into a government-vetted preview]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %})
 and called the access gate the real story. Here's the same story from the other side of the fence: a
 frontier lab getting *out* of the penalty box. I read a *Batch* piece on the U.S. **lifting export
 controls on Claude**, and it's a useful bookend. These are my notes.

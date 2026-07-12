@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Fable's Return and Fallout — the Full Timeline"
-date: 2026-07-03 22:00:00
+date: 2026-07-13 22:00:00
 description: "A companion to my export-controls note: the detailed chronology of the Claude Fable 5 saga — the Amazon-researcher incident that triggered the suspension, the worldwide shutoff, and the fallout after it came back, including coding tasks quietly rerouted to a weaker model. The first government-mandated suspension of general model access."
 tags: ai
 categories: general
@@ -12,7 +12,7 @@ mermaid:
 featured: false
 ---
 
-Earlier today I wrote up [the U.S. lifting export controls on Claude]({% post_url 2026-07-03-notes-us-lifts-claude-export-controls %})
+Earlier today I wrote up [the U.S. lifting export controls on Claude]({% post_url 2026-07-13-notes-us-lifts-claude-export-controls %})
 — the *resolution*. This *Batch* piece tells the fuller story: how the whole thing started, the specific
 incident that tripped it, and the messy **fallout** after Fable came back. Since it fills in the timeline
 my first note skipped, these are my notes on the chronology.
@@ -61,14 +61,14 @@ who just wanted the good model and got silently downgraded.
 
 ## Why it stuck with me
 
-- **This is the concrete version of a story I've been circling.** My [export-controls note]({% post_url 2026-07-03-notes-us-lifts-claude-export-controls %})
+- **This is the concrete version of a story I've been circling.** My [export-controls note]({% post_url 2026-07-13-notes-us-lifts-claude-export-controls %})
   had the deal; this has the *cause* (one Amazon-researcher incident) and the *cost* (a worldwide shutoff,
   then a degraded return). Cause and consequence make the abstract policy real.
 - **"First government-mandated suspension of general model access" is a line worth marking.** Not a preview
   gate, not an export tier on a niche model — a broadly-available model **pulled**, then returned
   diminished. That's a precedent, and precedents set the default for everyone next.
 - **The friction always lands on the legitimate user.** Silent reroutes and over-broad refusals are
-  exactly the [everyday developer friction]({% post_url 2026-07-03-notes-gpt-5-6-limbo %}) I flagged with
+  exactly the [everyday developer friction]({% post_url 2026-07-13-notes-gpt-5-6-limbo %}) I flagged with
   GPT-5.6 — the safeguards built for the worst case tax the normal case. It's the same double-edged
   centralization I keep hitting with [keeping capability local vs. central]({% post_url 2026-06-16-keep-your-ai-local %}).
 

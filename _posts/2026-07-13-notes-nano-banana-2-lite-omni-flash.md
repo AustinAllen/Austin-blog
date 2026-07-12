@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Google Pairs a Nano Banana Update with a Video API"
-date: 2026-07-03 20:00:00
+date: 2026-07-13 20:00:00
 description: "My notes on a Batch piece about Google's Nano Banana 2 Lite (a ~4-second, 3.4-cents image model) and Gemini Omni Flash (image-to-720p-video with audio, now on the API). The specs are fun, but the real line is the one about media generation getting cheap enough to run inside an app at runtime."
 tags: ai
 categories: general
@@ -58,7 +58,7 @@ user, per request**.
 - **Losing the quality race but winning the deployment one is a real strategy.** Fifth-best image model,
   cheapest and fastest — for most apps that's the *right* trade. It rhymes with the "good enough and
   integrated beats best-on-the-leaderboard" point I hit with
-  [Microsoft's in-house model]({% post_url 2026-07-03-notes-microsoft-mai-thinking-1 %}).
+  [Microsoft's in-house model]({% post_url 2026-07-13-notes-microsoft-mai-thinking-1 %}).
 - **The interesting questions move from *can it* to *should it*.** When generating a bespoke image or video
   for every user is trivially cheap, the constraint stops being capability and becomes taste, provenance,
   and trust — the same worry I had about [process over polish in image generation]({% post_url 2026-06-17-notes-process-driven-image-generation %}).

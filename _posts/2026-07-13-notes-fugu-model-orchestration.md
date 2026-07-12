@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Fugu Blends Models Task by Task"
-date: 2026-07-03 16:00:00
+date: 2026-07-13 16:00:00
 description: "My notes on a Batch piece about Sakana AI's Fugu and Fugu-Ultra — orchestrator models that don't answer your question so much as decide which of Claude, Gemini, and GPT should. Why this is routing, not merging, and why the timing (with Claude and GPT-5.6 access in flux) is the whole point."
 tags: ai
 categories: general
@@ -74,7 +74,7 @@ Sakana API, OpenRouter, and Vercel (outside Europe).
 ## Why the timing is the story
 
 The article is explicit about the geopolitical backdrop, and it ties my whole day of notes together: U.S.
-restrictions on [Claude Fable 5]({% post_url 2026-07-03-notes-us-lifts-claude-export-controls %}) and
+restrictions on [Claude Fable 5]({% post_url 2026-07-13-notes-us-lifts-claude-export-controls %}) and
 [GPT-5.6]({% post_url 2026-07-02-notes-gpt-5-6-approved-partners %}) access have **driven interest in
 orchestration**. When any one provider might be gated, throttled, or off-limits tomorrow, a layer that can
 **re-route to whoever's available** stops being a nice-to-have and becomes risk management. As the piece

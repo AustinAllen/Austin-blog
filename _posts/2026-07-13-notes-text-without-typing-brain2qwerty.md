@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Text Without Typing (Brain2Qwerty v2)"
-date: 2026-07-03 21:00:00
+date: 2026-07-13 21:00:00
 description: "My notes on a Batch piece about Brain2Qwerty v2 — a non-invasive system that decodes typed sentences straight from brain waves, no implant. The three-stage pipeline, the still-high 39% error rate, and the finding I found most exciting: training across many people's brains beats training on your own."
 tags: ai
 categories: general

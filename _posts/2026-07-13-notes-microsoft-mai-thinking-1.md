@@ -2,7 +2,7 @@
 layout: post_views
 giscus_comments: true
 title: "Article Notes: Microsoft Strikes Out on Its Own (MAI-Thinking-1)"
-date: 2026-07-03 13:00:00
+date: 2026-07-13 13:00:00
 description: "My notes on a Batch piece about MAI-Thinking-1 — Microsoft's first reasoning model built from scratch, not distilled from anyone else. The specs (1T-parameter MoE, 256k context), the benchmark that puts it third, and why the real story is a partnership clause, not a model."
 tags: ai
 categories: general
